@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="An interactive local n8n operations demo. Fictional leads, simulated AI and CRM, unsent follow-up drafts.">
+  <title>LeadOps · n8n operations lab</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/app.css">
+  <script src="/app.js" type="module"></script>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to workbench</a>
+  <header class="topbar">
+    <a href="/" class="brand" aria-label="LeadOps home"><span class="brand-mark" aria-hidden="true">L<span>•</span></span><span>LeadOps <small>Operations lab</small></span></a>
+    <div class="top-actions"><span id="connection" class="connection">Checking n8n…</span><a href="http://localhost:5678/workflow/LeadOpsDemoV1" target="_blank" rel="noreferrer">Open n8n <span aria-hidden="true">↗</span></a></div>
+  </header>
+  <div class="shell">
+    <aside class="sidebar" aria-label="Demo scenarios">
+      <div><h2>Choose a scenario</h2><p>Load a fictional enquiry, then run the workflow.</p></div>
+      <nav id="scenarios" aria-label="Scenario presets"></nav>
+      <div class="sidebar-note"><strong>Make a change.</strong><p>Edit the budget or timeline to see how the priority changes. Choose an unknown service to trigger human review.</p></div>
+      <div class="sidebar-bottom"><span class="mini-label">Local automation demo</span><p>Fictional leads, simulated AI and a local mock CRM. No external accounts connected.</p></div>
+    </aside>
+    <main id="main">
+      <div class="page-heading"><div><p class="context-label">Real n8n orchestration. Fictional business data.</p><h1>From enquiry to next action.</h1><p>Change a lead. Follow the decisions. Inspect the evidence.</p></div><span class="version-label">Demo v1.0</span></div>
+      <div class="simulation-banner"><span class="simulation-icon" aria-hidden="true">◈</span><div><strong>AI & CRM are simulated</strong><span>Rule-based AI responses, a local mock CRM and follow-up drafts. No model calls, API keys or messages sent.</span></div></div>
+      <section class="workspace" aria-labelledby="scenario-title">
+        <div class="workspace-heading"><div><span class="section-index" aria-hidden="true">01</span><h2 id="scenario-title">Lead workbench</h2></div><span id="expected" class="expected">Select a scenario</span></div>
+        <div class="workbench-grid">
+          <form id="lead-form" novalidate>
+            <div class="form-heading"><h3>Fictional enquiry</h3><span class="quiet-label">Editable inputs</span></div>
+            <div class="field-grid">
+              <label>Contact name<input name="name" id="name" maxlength="80" autocomplete="off"></label>
+              <label>Fictional email<input name="email" id="email" type="text" inputmode="email" maxlength="160" autocomplete="off" aria-describedby="email-hint"></label>
+              <label class="wide">Company<input name="company" id="company" maxlength="120" autocomplete="off"></label>
+              <label>Market<select name="market" id="market"><option>Hong Kong</option><option>Singapore</option><option>Other</option></select></label>
+              <label>Service interest<select name="service" id="service"><option value="performance_marketing">Performance marketing</option><option value="audience_insights">Audience insights</option><option value="marketing_automation">Marketing automation</option><option value="unknown">Unknown / needs review</option></select></label>
+              <label>Budget (HKD)<input name="budgetHkd" id="budgetHkd" type="number" min="0" max="10000000" step="1"></label>
+              <label>Launch in (days)<input name="timelineDays" id="timelineDays" type="number" min="0" max="365" step="1"></label>
+              <label class="wide">Enquiry message<textarea name="message" id="message" rows="3" maxlength="2000"></textarea></label>
+            </div>
+            <p id="email-hint" class="field-hint">Use made-up names and .test emails only. No real customer data.</p>
+            <label class="check"><input type="checkbox" id="consent" name="consent">The fictional contact has follow-up consent.</label>
+            <label class="check"><input type="checkbox" id="synthetic" name="synthetic" checked>I confirm this is fictional demonstration data.</label>
+            <div class="run-controls"><label>Failure injection<select id="simulate" name="simulate"><option value="none">Off · normal run</option><option value="ai_failure">Simulated AI timeout</option><option value="ai_invalid">Malformed mock AI output</option><option value="crm_failure">Simulated CRM failure</option></select></label><button type="submit" id="run-button" class="primary">Run lead workflow <span aria-hidden="true">↗</span></button></div>
+          </form>
+          <section id="result" class="result-pane" aria-labelledby="outcome-title" aria-busy="false">
+            <div class="result-top"><h3>Workflow outcome</h3><span id="outcome-state" class="pill">Awaiting run</span></div>
+            <div id="result-empty" class="result-empty"><div class="empty-flow" aria-hidden="true"><span>↳</span><span>✓</span><span>↗</span></div><h2 id="outcome-title">Ready when you are.</h2><p>Run the enquiry through n8n to see its category, priority and next action.</p><div class="empty-note">Validation and deduplication happen before the simulated AI step.</div></div>
+            <div id="result-content" hidden>
+              <div class="outcome-heading"><div><h2 id="result-title"></h2><p id="result-subtitle"></p></div><div id="score-block" class="score-block"><span id="score"></span><small>rule score / 100</small></div></div>
+              <dl class="result-facts"><div><dt>Classification <span class="mock-label">Simulated AI</span></dt><dd id="category"></dd></div><div><dt>Assigned to <span class="mock-label">Demo role</span></dt><dd id="owner"></dd></div></dl>
+              <div id="validation-errors" class="validation-errors" hidden></div>
+              <div id="score-rules"></div>
+              <div class="next-action"><h3 id="next-action-title">Next action</h3><p id="next-action-text"></p><span id="due-at"></span></div>
+              <details id="follow-up" hidden><summary>Read follow-up draft <span class="mock-label">Never sent</span></summary><pre id="follow-up-text"></pre></details>
+              <p id="recovery" class="recovery"></p>
+            </div>
+            <div class="run-evidence"><span id="run-id">n8n execution evidence appears here</span><button id="download-result" class="text-button" disabled>Download result JSON</button></div>
+          </section>
+        </div>
+      </section>
+      <section class="pipeline-section" aria-labelledby="pipeline-title"><div class="section-heading"><div><span class="section-index" aria-hidden="true">02</span><h2 id="pipeline-title">Decision trail</h2></div><p>Inspect a stage. Results come from the actual workflow response.</p></div><div id="pipeline" class="pipeline" aria-label="Workflow stages"></div><div id="stage-evidence" class="stage-evidence"><strong id="stage-title">Validation</strong><p id="stage-detail">Run a lead to inspect the workflow evidence.</p><details id="stage-json-details" hidden><summary>Stage data</summary><pre id="stage-json"></pre></details></div></section>
+      <section class="crm-section" aria-labelledby="crm-title"><div class="section-heading"><div><span class="section-index" aria-hidden="true">03</span><h2 id="crm-title">Mock CRM</h2><span class="pill simulated">Local simulation</span></div><button id="reset-demo" class="secondary">Reset demo data</button></div><p class="section-description">Fictional records stored on this computer. Reset restores the seed record; n8n execution history stays available.</p><div class="table-scroll"><table><caption class="sr-only">Fictional local CRM records</caption><thead><tr><th>Contact / company</th><th>Category</th><th>Priority</th><th>Owner</th><th>Record / execution</th></tr></thead><tbody id="crm-rows"></tbody></table></div><p id="crm-count" class="table-footer"></p></section>
+      <section class="contract-section" aria-labelledby="contract-title"><h2 id="contract-title">See the automation contract</h2><p>AI output is an illustrative rule-based simulation. The message is retained as input data; the mock does not understand natural language. Scores and response targets are invented demo rules.</p><details><summary>Simulated AI input & output <span class="mock-label">No model connected</span></summary><div class="contract-grid"><div><h3>Input · lead-classifier.v1</h3><pre id="ai-input">Run a new, valid lead to inspect the input.</pre></div><div><h3>Output · validated JSON</h3><pre id="ai-output">No AI step has run yet.</pre></div></div></details><details><summary>Full n8n response</summary><pre id="raw-result">No execution yet.</pre></details></section>
+      <footer><span>LeadOps / automation demo</span><span>n8n runs locally · AI simulated · CRM simulated · Drafts only</span></footer>
+    </main>
+  </div>
+  <div id="announcement" class="sr-only" role="status" aria-live="polite"></div>
+</body>
+</html>

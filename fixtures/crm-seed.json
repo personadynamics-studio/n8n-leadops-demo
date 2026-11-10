@@ -1,0 +1,3 @@
+[
+  { "id": "DEMO-001", "name": "Morgan Lee", "email": "morgan@nova.test", "company": "Nova Commerce (fictional)", "market": "Hong Kong", "category": "sales_ready", "score": 100, "tier": "P1", "owner": "Demo sales desk", "createdAt": "2026-11-10T00:00:00.000Z", "runId": "seed", "simulated": true }
+]

@@ -1,0 +1,16 @@
+node_modules/
+.env
+.local/
+data/
+test-results/
+playwright-report/
+*.log
+*.pem
+*.key
+
+# Local preparation notes; excluded from the public project.
+docs/DEMO-zh-Hant.md
+docs/INTERVIEW.md
+docs/PUBLISHING.md
+docs/SPEC.md
+docs/evidence/review-results.json

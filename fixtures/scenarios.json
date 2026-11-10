@@ -1,0 +1,37 @@
+[
+  {
+    "id": "hot", "label": "Launch-ready lead", "hint": "High budget, near-term launch", "expected": "P1 · sales ready",
+    "synthetic": true, "simulate": "none",
+    "lead": { "name": "Avery Chan", "email": "avery@harbor.test", "company": "Harbor Retail (fictional)", "market": "Hong Kong", "service": "performance_marketing", "budgetHkd": 120000, "timelineDays": 14, "message": "We are planning a fictional APAC retail launch. Please prepare a proposal and a discovery call to discuss campaign objectives.", "consent": true }
+  },
+  {
+    "id": "warm", "label": "Exploring options", "hint": "Mid-range budget, longer timeline", "expected": "P2 · nurture",
+    "synthetic": true, "simulate": "none",
+    "lead": { "name": "Jordan Lim", "email": "jordan@orchard.test", "company": "Orchard Studio (fictional)", "market": "Singapore", "service": "audience_insights", "budgetHkd": 35000, "timelineDays": 60, "message": "Our fictional team is comparing audience research options. We would like to understand deliverables before deciding.", "consent": true }
+  },
+  {
+    "id": "cold", "label": "Early research", "hint": "Small budget, no urgent launch", "expected": "P3 · nurture",
+    "synthetic": true, "simulate": "none",
+    "lead": { "name": "Riley Park", "email": "riley@meadow.test", "company": "Meadow Books (fictional)", "market": "Other", "service": "marketing_automation", "budgetHkd": 5000, "timelineDays": 180, "message": "We are doing early fictional research into marketing operations and would appreciate a basic overview.", "consent": true }
+  },
+  {
+    "id": "missing", "label": "Missing information", "hint": "Name and email are blank", "expected": "Validation blocked",
+    "synthetic": true, "simulate": "none",
+    "lead": { "name": "", "email": "", "company": "Incomplete Co (fictional)", "market": "Hong Kong", "service": "unknown", "budgetHkd": 0, "timelineDays": 90, "message": "This fictional submission intentionally omits the contact details.", "consent": true }
+  },
+  {
+    "id": "duplicate", "label": "Duplicate submission", "hint": "Email matches the seeded CRM", "expected": "Duplicate prevented",
+    "synthetic": true, "simulate": "none",
+    "lead": { "name": "Morgan Lee", "email": "  MORGAN@NOVA.TEST  ", "company": "Nova Commerce (fictional)", "market": "Hong Kong", "service": "performance_marketing", "budgetHkd": 90000, "timelineDays": 21, "message": "This fictional contact already exists. Check that normalization prevents a second record.", "consent": true }
+  },
+  {
+    "id": "ai-failure", "label": "Classifier failure", "hint": "Injected mock AI timeout", "expected": "AI failed · no CRM write",
+    "synthetic": true, "simulate": "ai_failure",
+    "lead": { "name": "Casey Wong", "email": "casey@willow.test", "company": "Willow Travel (fictional)", "market": "Hong Kong", "service": "audience_insights", "budgetHkd": 95000, "timelineDays": 21, "message": "A fictional lead used to demonstrate classifier failure handling and safe replay.", "consent": true }
+  },
+  {
+    "id": "crm-failure", "label": "CRM unavailable", "hint": "Injected mock storage failure", "expected": "CRM failed · safe retry",
+    "synthetic": true, "simulate": "crm_failure",
+    "lead": { "name": "Taylor Ho", "email": "taylor@cobalt.test", "company": "Cobalt Living (fictional)", "market": "Singapore", "service": "marketing_automation", "budgetHkd": 100000, "timelineDays": 20, "message": "A fictional lead used to show that a failed CRM commit does not create a follow-up draft.", "consent": true }
+  }
+]
