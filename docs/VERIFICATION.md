@@ -13,7 +13,8 @@ Executed on **2026-11-10 (Asia/Hong_Kong)** on Windows. Business-case runs used 
 
 | Level | Result | What was exercised |
 | --- | --- | --- |
-| Pure logic / storage / artifact | 14 tests passed | Normalization, mandatory fields, synthetic contact guard, numeric bounds, deduplication, unavailable lookup, categories, scoring, unknown-service review, mock timeout, malformed output, draft-only behavior, atomic store, safe retry, no forbidden node type / credential / external URL, graph reachability |
+| Pure logic / storage / artifact | 20 tests passed | The original 14 checks plus six standalone-runtime tests covering seven scenarios, separate visitors, reset, normalized duplicate, recovery, edits, review and invalid input |
+| Standalone website browser | 19 checks passed | Seven cases, edits, recovery, human review, session isolation, reset/reload, JSON download, escaped text, responsive layout, zero API/external requests and zero browser errors |
 | Live n8n integration | 21 checks passed | All seven presets, exact HTTP/business outcomes, skipped stages, record counts, normalized replay, recovery, malformed output, human review, eight concurrent identical submissions, reserved email rejection, cross-origin block, JSON/size boundaries and public/internal port separation |
 | Isolated Chromium browser | 18 checks passed | All seven scenarios from UI, actual execution IDs, draft inspection, stage switching, JSON download, recovery, escaped hostile text, 320/768/1024/1440 widths, keyboard focus, connection-error UI and state reset |
 | Automated accessibility | 0 violations in audited result screen | axe WCAG 2 A/AA + 2.1 AA tags; not a complete manual conformance audit |
@@ -29,6 +30,7 @@ Machine-readable evidence:
 - `evidence/browser-results.json`: checks, tested Chromium version, accessibility and local navigation timing.
 - `evidence/startup-results.json`: independent fresh-volume startup and actual first run.
 - `evidence/n8n-inspection.json`: n8n execution inspected in its own UI.
+- `evidence/standalone-results.json`: standalone website tests and exact tested URL; this mode simulates the entire process in the browser.
 
 Execution IDs identify the local database at capture time, not a globally unique public run. The workflow retains executions for seven days; historical screenshots/evidence remain valid capture records after pruning. Navigation timing is one local observation, not a performance benchmark or production SLA.
 
@@ -49,6 +51,7 @@ All PNGs are direct browser captures, without compositing or retouching:
 | `08-connection-error.png` | Explicit browser-test injection of unavailable n8n response; this one screenshot does not claim an actual engine outage |
 | `09-n8n-workflow.png` | Published workflow in actual n8n editor |
 | `10-n8n-execution.png` | Saved execution and traversed path in actual n8n |
+| `11-standalone-website.png` | Separate browser-only website, clearly labeled as a simulation with no n8n backend |
 
 ## Issues found and resolved
 

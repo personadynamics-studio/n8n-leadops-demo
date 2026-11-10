@@ -1,0 +1,31 @@
+{
+  "capturedAt": "2026-11-10T12:58:58.812Z",
+  "url": "https://n8n-leadops-demo.k1628707369.workers.dev",
+  "browser": "158.0.8127.18",
+  "mode": "browser_simulation",
+  "checks": [
+    "public site explicitly identifies the browser simulation and has no localhost links",
+    "hot: completed",
+    "warm: completed",
+    "cold: completed",
+    "missing: validation_failed",
+    "duplicate: duplicate",
+    "ai-failure: ai_failed",
+    "crm-failure: crm_failed",
+    "CRM failure recovers by switching injection off",
+    "malformed simulated AI output fails closed",
+    "editing budget and timing changes the route to P2 / 65",
+    "unknown service routes to human review",
+    "visitor CRM state is independent",
+    "decision trail and JSON download work",
+    "lead text is safely rendered",
+    "reload restores the fictional seed",
+    "automated accessibility audit: zero violations",
+    "layout works at 320 / 768 / 1440 pixels",
+    "zero API requests, external requests or browser errors"
+  ],
+  "browserErrors": [],
+  "apiRequests": 0,
+  "externalRequests": 0,
+  "accessibilityViolations": 0
+}

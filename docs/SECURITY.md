@@ -1,5 +1,7 @@
 # Local-demo trust boundaries
 
+The public Cloudflare website is a separate, backend-free browser simulation. It serves only static HTML/CSS/JavaScript. Its API-shaped adapter runs entirely in memory, never calls `fetch`, never sends lead input to a server, and keeps each tab's mock CRM separate. A CSP `connect-src 'none'` blocks accidental fetch/XHR. Reload/reset restores the seed; no browser storage, database, n8n endpoint, credentials or shared reset operation is used. The website labels orchestration, AI and CRM as simulated and uses `DEMO-` run IDs. The controls below describe the optional local n8n stack.
+
 Assets: fictional lead records, demo execution history and the local n8n owner login / generated encryption key. The workbench does not handle real customer data, provider credentials, payments or sessions. The browser, lead fields and mock output are treated as data.
 
 | Boundary | Threat | Implemented control |

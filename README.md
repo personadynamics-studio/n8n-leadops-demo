@@ -1,12 +1,38 @@
-# LeadOps: an interactive n8n operations demo
+# LeadOps: an interactive automation demo
 
 An enquiry arrives. Is it complete? Is it already in the CRM? Who should follow up, and why?
 
-LeadOps turns those questions into an inspectable local n8n workflow, with an editable workbench, seven fictional scenarios, explicit failure handling and actual execution evidence.
+LeadOps turns those questions into an editable workbench with seven fictional scenarios, explicit failure handling and an inspectable decision trail. It includes a standalone website and an importable n8n workflow.
 
-**Simulation boundary:** n8n orchestration runs for real. **AI is deterministic JavaScript, CRM is a local fictional JSON store, and follow-ups are unsent drafts.** There is no model, API key, external CRM, mail sender or AI API fee. The mock retains enquiry text in its input but does not understand natural language. Confidence values are illustrative. Scores, owners and response targets are invented demo policy.
+**[Open the interactive demo](https://n8n-leadops-demo.k1628707369.workers.dev)** — no login, installation or running local computer required.
 
-![A real run in the LeadOps workbench](docs/screenshots/00-overview.png)
+**Standalone website:** the complete workflow, AI and CRM are simulated in the visitor's browser. No n8n server is connected, nothing is submitted to an API, and each tab has its own temporary fictional CRM. Reload or reset restores the seed. The website works independently of the developer's computer.
+
+**Local Docker version:** n8n orchestration runs for real, while AI uses deterministic JavaScript, CRM is a local fictional JSON store and follow-ups are unsent drafts. Neither version calls a model, requires an AI API key or sends messages. Confidence values, score weights and response targets are illustrative demo policy.
+
+![Standalone browser demonstration](docs/screenshots/11-standalone-website.png)
+
+## Standalone website
+
+The website reuses the same validation, classification and scoring functions as the n8n workflow, with an in-memory browser adapter. It does not claim to execute n8n. No Docker, account or backend is needed to use the published website. Inputs remain in the current tab; no analytics or external API is connected.
+
+To build and verify the website:
+
+```sh
+npm ci
+npm run build:site
+npx playwright install chromium
+npm run test:site
+```
+
+To deploy to your Cloudflare account with the official Wrangler CLI installed and authenticated:
+
+```sh
+npm run build:site
+wrangler deploy
+```
+
+`wrangler.jsonc` uploads only the allowlisted `dist/` assets using Cloudflare Workers Static Assets. There is no Worker API, database binding, n8n server or model service. `dist/_headers` blocks fetch/XHR connections via CSP. The deploy command updates the named Cloudflare site; GitHub pushes alone do not redeploy it. [Official static-assets documentation](https://developers.cloudflare.com/workers/static-assets/).
 
 ## What to inspect
 
@@ -16,7 +42,7 @@ LeadOps turns those questions into an inspectable local n8n workflow, with an ed
 - **Reliability:** blocked cases, simulated service failures, safe retries, a real n8n execution ID and downloadable response JSON.
 - **Verification:** unit tests, actual webhook tests, isolated browser checks, automated accessibility checks and genuine screenshots. No claims about real conversion uplift or measured staff time savings.
 
-## Run locally
+## Run the local n8n version
 
 Requires Docker Desktop using Linux containers / WSL2 on Windows, or Docker Engine with Compose v2+. No Node.js or npm install is needed just to run the demo.
 
@@ -122,7 +148,7 @@ npm audit
 
 The live integration/browser tests reset **this demo's mock CRM**, run fictional cases and restore the seed; they retain n8n execution history. `scripts/capture-n8n.mjs` optionally captures the actual n8n editor and an execution, using the ignored local demo-owner file. It does not reset an existing owner account.
 
-Verified on Windows 11 + Docker Desktop / WSL2: **14 unit tests, 21 live integration checks and 18 browser checks**. Browser coverage includes all seven presets, recovery, JSON download, hostile-text escaping, keyboard focus and widths of 320/768/1024/1440px. Automated axe checks found no WCAG 2.1 AA violations on the audited screen; that does not replace a full manual accessibility audit. See [verification record](docs/VERIFICATION.md) and [machine-readable evidence](docs/evidence/).
+Verified: **20 unit tests**, **19 standalone website browser checks**, plus **21 actual n8n integration checks and 18 local n8n browser checks**. Coverage includes the seven presets, recovery, editing, JSON download, independent browser sessions, hostile-text escaping and responsive layouts. The standalone audit also verifies zero API requests. Automated axe checks found no WCAG 2.1 AA violations on the audited screens; that does not replace a full manual accessibility audit. See [verification record](docs/VERIFICATION.md) and [machine-readable evidence](docs/evidence/).
 
 ![Actual n8n execution with traversed nodes](docs/screenshots/10-n8n-execution.png)
 
@@ -138,6 +164,7 @@ Verified on Windows 11 + Docker Desktop / WSL2: **14 unit tests, 21 live integra
 | `THIRD_PARTY_NOTICES.md`, `licenses/` | Reference licensing and dependency notices |
 | `docs/screenshots/` | Unedited captures from the real local apps |
 | `docs/AI-CONTRACT.md` | Versioned mock-classifier interface and decision rules |
+| `site/`, `scripts/build-site.mjs`, `wrangler.jsonc` | Independent browser simulation and Cloudflare static deployment |
 
 ## Limitations
 
