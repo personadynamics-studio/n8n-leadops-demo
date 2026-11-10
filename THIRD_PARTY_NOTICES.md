@@ -19,4 +19,4 @@ Runtime images are fetched from their official registries; they are not bundled 
 
 Development/test packages are pinned in `package-lock.json` and installed only when requested for development. Playwright / playwright-core are Apache-2.0; `@axe-core/playwright` 4.14.0 and axe-core 4.14.0 declare MPL-2.0 in their installed package metadata. Their package distributions retain upstream notices. These packages are not production dependencies and `node_modules` is excluded from the source archive. Browsers downloaded by Playwright retain their own terms.
 
-No externally sourced imagery, fonts or icon package is used. The small LeadOps SVG mark is original. Company names appear only as interview context, without their logos or a claim of affiliation.
+No externally sourced imagery, fonts or icon package is used. The small LeadOps SVG mark is original.

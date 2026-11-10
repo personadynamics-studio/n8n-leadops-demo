@@ -1,0 +1,12 @@
+{
+  "capturedAt": "2026-11-10T12:09:30.3081882Z",
+  "project": "leadops-clean-qa",
+  "freshNamedVolumes": true,
+  "startup": "scripts/start.ps1",
+  "importAndPublishSucceeded": true,
+  "seedRecordsBeforeRun": 1,
+  "actualExecutionId": "1",
+  "outcome": "completed",
+  "score": 100,
+  "note": "Verified first startup on separate empty volumes, without copying the prepared instance database or credentials."
+}

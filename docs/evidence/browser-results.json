@@ -1,0 +1,33 @@
+{
+  "capturedAt": "2026-11-10T12:29:24.992Z",
+  "browser": "158.0.8127.18",
+  "base": "http://localhost:3000",
+  "checks": [
+    "UI hot: completed, real n8n #105",
+    "draft stays unsent, stages are inspectable and JSON downloads",
+    "UI warm: completed, real n8n #106",
+    "UI cold: completed, real n8n #107",
+    "UI missing: validation_failed, real n8n #108",
+    "UI duplicate: duplicate, real n8n #109",
+    "UI ai-failure: ai_failed, real n8n #110",
+    "UI crm-failure: crm_failed, real n8n #111",
+    "CRM failure recovers through the same interface",
+    "axe WCAG 2.1 AA automated audit: zero violations",
+    "untrusted lead text renders as text, not executable HTML",
+    "responsive layout at 320px",
+    "responsive layout at 768px",
+    "responsive layout at 1024px",
+    "responsive layout at 1440px",
+    "skip link and primary action accept keyboard focus",
+    "connection failure is visible and scenario switching restores the ready state",
+    "zero browser exceptions, warnings or external requests"
+  ],
+  "errors": [],
+  "outsideRequests": [],
+  "automatedAccessibilityViolations": 0,
+  "localPageTiming": {
+    "domContentLoadedMs": 34,
+    "loadMs": 34
+  },
+  "note": "Connection error screenshot uses an explicitly injected browser test response. All business-case screenshots use the live n8n backend."
+}
